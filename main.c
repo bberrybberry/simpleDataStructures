@@ -31,13 +31,16 @@
 inline static char compareInts(int* i1, int* i2);
 inline static char compareInts(int* i1, int* i2){ return *i1 == *i2; }
 
+inline static char largestInt(int* i1, int* i2);
+inline static char largestInt(int* i1, int* i2){ return (*i1 >= *i2) ? *i1 : *i2; }
+
 int main(void) {
     WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
 
     printf("Hello World\n");
 	
     List_t myList;
-    init_List(&myList, compareInts);
+    init_List(&myList, compareInts, largestInt, sizeof(int));
     add_List(&myList, 15);
     add_List(&myList, 25);
 
